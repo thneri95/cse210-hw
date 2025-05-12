@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 class Journal
 {
@@ -11,22 +12,26 @@ class Journal
     public Journal()
     {
         _entries = new List<Entry>();
-        _promptGenerator = new PromptGenerator(); // To follow an order of prompts
+        _promptGenerator = new PromptGenerator();
     }
 
     public void AddEntry()
     {
-        string prompt = _promptGenerator.GetNextPrompt();
-
+        string prompt = _promptGenerator.GetRandomPrompt();
         Console.WriteLine(prompt);
         Console.Write("> ");
         string entryText = Console.ReadLine();
+
+        Console.Write("Optional mood tag (happy, stressed etc): ");
+        string mood = Console.ReadLine();
 
         Entry newEntry = new Entry
         {
             _entryText = entryText,
             _promptText = prompt,
-            _date = DateTime.Now.ToShortDateString()
+            _date = DateTime.Now.ToShortDateString(),
+            _time = DateTime.Now.ToShortTimeString(),
+            _moodTag = mood
         };
 
         _entries.Add(newEntry);
@@ -41,33 +46,37 @@ class Journal
         }
 
         Console.WriteLine("\n--- Journal Entries ---\n");
-
         foreach (Entry entry in _entries)
         {
-            Console.WriteLine($"Date       : {entry._date}");
-            Console.WriteLine($"Question   : {entry._promptText}");
-            Console.WriteLine($"My entry   : {entry._entryText}");
-            Console.WriteLine("------------------------------");
+            entry.Display();
         }
     }
 
-    public void SaveToFile(string file)
+
+    // midle
+
+    public void SaveToCsv(string file)
     {
         using (StreamWriter outputFile = new StreamWriter(file))
         {
-            outputFile.WriteLine("Date,Prompt,Entry");
-
+            outputFile.WriteLine("Date,Time,Prompt,Entry,Mood");
             foreach (Entry entry in _entries)
             {
-                string cleanEntry = $"{entry._date},{EscapeCsv(entry._promptText)},{EscapeCsv(entry._entryText)}";
+                string cleanEntry = $"{entry._date},{entry._time},{EscapeCsv(entry._promptText)},{EscapeCsv(entry._entryText)},{EscapeCsv(entry._moodTag)}";
                 outputFile.WriteLine(cleanEntry);
             }
         }
-
         Console.WriteLine("Entries saved successfully in CSV format.");
     }
 
-    public void LoadFromFile(string filename)
+    public void SaveToJson(string file)
+    {
+        string jsonString = JsonSerializer.Serialize(_entries);
+        File.WriteAllText(file, jsonString);
+        Console.WriteLine("Entries saved successfully in JSON format.");
+    }
+
+    public void LoadFromCsv(string filename)
     {
         if (!File.Exists(filename))
         {
@@ -78,17 +87,18 @@ class Journal
         _entries.Clear();
         string[] lines = File.ReadAllLines(filename);
 
-        foreach (string line in lines.Skip(1)) // Skip header...
+        foreach (string line in lines.Skip(1))
         {
-            string[] parts = SplitCsvLine(line);
-
-            if (parts.Length == 3)
+            string[] parts = line.Split(',');
+            if (parts.Length >= 5)
             {
                 Entry entry = new Entry
                 {
                     _date = parts[0].Trim(),
-                    _promptText = UnescapeCsv(parts[1].Trim()),
-                    _entryText = UnescapeCsv(parts[2].Trim())
+                    _time = parts[1].Trim(),
+                    _promptText = UnescapeCsv(parts[2].Trim()),
+                    _entryText = UnescapeCsv(parts[3].Trim()),
+                    _moodTag = UnescapeCsv(parts[4].Trim())
                 };
                 _entries.Add(entry);
             }
@@ -96,8 +106,20 @@ class Journal
 
         Console.WriteLine("Entries loaded successfully from CSV!");
     }
+    // if not found> > > 
+    public void LoadFromJson(string filename)
+    {
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine("File not found...");
+            return;
+        }
 
-    // Helper to escape commas and quotes!
+        string jsonString = File.ReadAllText(filename);
+        _entries = JsonSerializer.Deserialize<List<Entry>>(jsonString);
+        Console.WriteLine("Entries loaded successfully from JSON!");
+    }
+
     private string EscapeCsv(string input)
     {
         if (input.Contains(",") || input.Contains("\""))
@@ -107,7 +129,6 @@ class Journal
         return input;
     }
 
-    // Helper to unescape CSV!
     private string UnescapeCsv(string input)
     {
         if (input.StartsWith("\"") && input.EndsWith("\""))
@@ -117,32 +138,12 @@ class Journal
         return input;
     }
 
-
-    private string[] SplitCsvLine(string line)
+    public void SearchByKeyword(string keyword)
     {
-        var result = new List<string>();
-        bool insideQuotes = false;
-        string current = "";
-
-        foreach (char c in line)
+        var matches = _entries.Where(e => e._entryText.Contains(keyword, StringComparison.OrdinalIgnoreCase) || e._promptText.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+        foreach (var entry in matches)
         {
-            if (c == ',' && !insideQuotes)
-            {
-                result.Add(current);
-                current = "";
-            }
-            else if (c == '\"')
-            {
-                insideQuotes = !insideQuotes;
-                current += c;
-            }
-            else
-            {
-                current += c;
-            }
+            entry.Display();
         }
-
-        result.Add(current);
-        return result.ToArray();
     }
 }
