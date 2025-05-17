@@ -1,0 +1,49 @@
+BYU- Idaho | BSc in Software Development    
+
+CSE-210 Course Programming with Classes  
+
+Week03 Explain Encapsulation  
+
+Author: Tiago Borges  
+
+What is Encapsulation and Why is it Important?  
+
+Encapsulation is one of the core principles of object-oriented programming. It refers to the concept of bundling data (fields) and methods that operate on that data into a single unit, usually a class, while also restricting direct access to some of the object's components. This means the internal state of an object is protected from unintended or harmful changes by external code.  
+
+One of the main benefits of encapsulation is that it promotes modularity and maintainability. It allows the internal implementation of a class to change without affecting the code that uses it, as long as the public interface remains consistent. This makes programs easier to update, debug and extend over time. 
+
+In my recent Scripture Memorizer program, I applied encapsulation by creating a Word class that controls whether each word is visible or hidden. Other classes, such as Scripture, don’t need to know how the word hides itself—they just call a method like Hide() and rely on the Word class to handle it.  
+
+Here's an example from my own word.cs :     
+
+public class Word
+{
+    private string _text;
+    private bool _isHidden;
+
+    public Word(string text)
+    {
+        _text = text;
+        _isHidden = false;
+    }
+
+    public void Hide()
+    {
+        _isHidden = true;
+    }
+
+    public string GetDisplayText()
+    {
+        return _isHidden ? "_____" : _text;
+    }
+}
+
+
+
+  
+
+" This code encapsulates both the text and the hidden state of a word. Other parts of the program don’t directly change _isHidden—they use the Hide() method. This way, the logic for displaying a word is entirely contained in the class, which helps separate responsibilities and keeps the code clean and reusable. " 
+
+To summarize: encapsulation is the object-oriented programming principle of bundling data and the methods that operate on that data within a single unit (typically a class), while restricting direct access to some of the object's components. It helps protect the internal state of an object and exposes only what is necessary through a controlled interface. In simpler terms, encapsulation means "hiding" the internal details of how something works and only "showing" what is needed to use it — like using a car without needing to understand how the engine works!!! 
+
+ 
