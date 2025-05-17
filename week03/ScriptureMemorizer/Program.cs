@@ -10,6 +10,7 @@ class Program
         Scripture scripture = library.GetRandomScripture();
 
         // Part 2 - Ask the user how many words to hide per round 
+        Console.WriteLine("Welcome to Scripture Memorizer Program!");
         Console.Write("How many words do you want to hide per round? ");
         int wordsPerRound = int.TryParse(Console.ReadLine(), out int n) ? n : 3;
 
@@ -42,7 +43,7 @@ class Program
 }
 
 // This program helps users memorize scriptures by hiding random words from a passage each round
- 
+
 
 // Extra Features Add:
 
