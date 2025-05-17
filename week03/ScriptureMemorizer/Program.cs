@@ -42,7 +42,7 @@ class Program
 }
 
 // This program helps users memorize scriptures by hiding random words from a passage each round
-
+ 
 
 // Extra Features Add:
 
