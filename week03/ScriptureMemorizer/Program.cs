@@ -48,7 +48,7 @@ class Program
 // Extra Features Add:
 
 // I mixed the Bible + BOM 
-//- User chooses how many words to hide per round
+//-  Firstly the User chooses how many words to hide per round
 //- Timer delay added to aid memorization
 //- Loads multiple scriptures from an external file (scriptures.txt)
 //- Random scripture selection
