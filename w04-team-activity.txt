@@ -1,0 +1,121 @@
+ 
+BYU- Idaho | BSc in Software Development    
+
+CSE-210 Course Programming with Classes  
+
+Week04 – My RoadMap - C#
+
+Author: Tiago Borges 
+
+ 
+
+CSE 210 - W04  Activity: Foundation Programs Design 
+ 
+Foundation Program 1: Abstraction with YouTube Videos 
+
+This program simulates a collection of YouTube videos, displaying details such as title, author, length, and user comments. It demonstrates abstraction by encapsulating video and comment details into separate classes that expose only necessary information. 
+
+Candidate Classes and Responsibilities 
+
+1. Video Class 
+
+ Responsibilities: Store video information (title, author, length), manage comments, and display video details. 
+
+Methods: add_comment(), get_comment_count(), display_info() 
+
+Attributes: title, author, length, comments (list of Comment objects) 
+
+2. Comment Class 
+
+Responsibilities: Represent a single user comment with name and message. 
+
+ Methods: get_comment_text() 
+
+ Attributes: commenter_name, comment_text 
+
+
+
+Class diagram (summarized): 
+
+Pgsql , Copy , Edit  
+
++-------------+         +-------------+
+|   Video     |<>------>|  Comment    |
++-------------+         +-------------+
+| - title     |         | - name      |
+| - author    |         | - text      |
+| - length    |         +-------------+
+| - comments  |
++-------------+
+| +DisplayInfo()        |
+| +GetCommentCount()    |
++-----------------------+
+
+
+
+
+
+Foundation Program 2: Encapsulation with Online Ordering 
+
+This program simulates an online order system. It handles customer information, order details, products, and shipping labels. Encapsulation is demonstrated by organizing these responsibilities into separate classes that manage their own state and expose behaviors through methods. 
+
+Candidate Classes and Responsibilities 
+
+1. Product Class 
+
+Responsibilities: Store product details and calculate price based on quantity. 
+
+Methods: get_total_price() 
+
+Attributes: name, product_id, price, quantity 
+
+2. Customer Class 
+
+Responsibilities: Store customer information and determine if address is in the USA. 
+
+Methods: is_in_usa(), get_name(), get_address() 
+
+Attributes: name, address (Address object) 
+
+3. Address Class 
+
+Responsibilities: Store and format address information. 
+
+Methods: is_usa(), get_full_address() 
+
+Attributes: street, city, state, country 
+
+4. Order Class 
+
+-Responsibilities: Manage a list of products, calculate totals, and generate shipping/packing labels. 
+
+- Methods: get_total_price(), get_shipping_label(), get_packing_label() 
+
+- Attributes: customer (Customer object), products (list of Product objects) 
+
+ 
+ Class Diagram: (summarized) 
+
+
+ +-------------+     +-------------+     +-------------+
+|   Order     |<----|  Customer   |<----|   Address   |
++-------------+     +-------------+     +-------------+
+| - products  |     | - name      |     | - street    |
+| - customer  |     | - address   |     | - city      |
++-------------+     +-------------+     | - state     |
+| +CalculateTotalCost()                | - country   |
+| +IsInUSA()                           +-------------+
++---------------------+
+      |
+      v
++-------------+
+|  Product    |
++-------------+
+| - name      |
+| - id        |
+| - price     |
+| - quantity  |
++-------------+
+| +GetSubtotal()     |
++--------------------+
+
