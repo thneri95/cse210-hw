@@ -1,6 +1,5 @@
 public class Activity
 {
-    // Protected members to be accessible by derived classes
     protected string _name;
     protected string _description;
     protected int _duration;  // Duration of the activity in seconds

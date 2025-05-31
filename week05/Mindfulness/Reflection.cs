@@ -1,5 +1,3 @@
-// ReflectionActivity.cs
-// Derived class for the Reflection Activity
 public class ReflectionActivity : Activity
 {
     // Lists of prompts and questions for reflection
@@ -34,7 +32,7 @@ public class ReflectionActivity : Activity
     {
         DisplayStartingMessage(); // Call common starting message
 
-        // Get a random prompt
+        // Get a random prompt:
         Random random = new Random();
         string prompt = _prompts[random.Next(_prompts.Count)];
         Console.WriteLine();
@@ -50,11 +48,11 @@ public class ReflectionActivity : Activity
         ShowCountdown(5); // Countdown before starting questions
         Console.Clear(); // Clear the console to show questions
 
-        // Calculate the end time for the activity
+        // Calculate the end time for the activity:
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(_duration);
 
-        // Loop and display random questions until duration is met
+        // Loop and display random questions until duration is met:
         while (DateTime.Now < endTime)
         {
             string question = _questions[random.Next(_questions.Count)];

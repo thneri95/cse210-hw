@@ -1,6 +1,3 @@
-
-// ListingActivity.cs
-// Derived class for the Listing Activity
 public class ListingActivity : Activity
 {
     // List of prompts for listing
@@ -45,11 +42,7 @@ public class ListingActivity : Activity
         // Loop to collect user input until duration is met
         while (DateTime.Now < endTime)
         {
-            // Non-blocking input attempt. This is a simplification as Console.ReadLine() is blocking.
-            // For a truly non-blocking input, you'd need more advanced console handling or a GUI.
-            // For this console application, we'll just prompt for input and count.
-            // The user is expected to type items and press enter.
-            // The loop will continue to prompt until the time runs out.
+
             Console.Write($"> ");
             string item = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(item)) // Only count non-empty items
