@@ -17,7 +17,7 @@ public class Program
         /*
         * Exceeding Requirements:
         * 1. Added robust error handling for file saving/loading, including checking for file existence and parsing errors...
-        * 2. Improved user experience with more detailed console feedback for actions (e.g., goal creation, event recording messages)
+        * 2. Improved user experience with more detailed console feedback for actions ( goal creation, event recording messages)
         * 3. Implemented a simple score display update after loading goals
         */
     }

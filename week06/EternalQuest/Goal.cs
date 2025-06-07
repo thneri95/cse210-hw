@@ -21,16 +21,15 @@ public abstract class Goal
     // This demonstrates polymorphism, as each goal type records an event differently
     public abstract int RecordEvent();
 
-    // Virtual method: Derived classes CAN override this if their display differs:
-    // This also demonstrates polymorphism:
+    // Virtual method: Derived classes "CAN override" this if their display differs:
+    // This also demonstrates polymorphism;
     public virtual string GetDetailsString()
     {
-        // Default details string includes name and description:
         return $"{_shortName} ({_description})";
     }
 
     // Abstract method: Derived classes MUST implement this for saving data
-    // This is part of the serialization process ( i tried to turning object to string)
+    // This is part of the serialization process ( I tried to turning object to string)
     public abstract string GetStringRepresentation();
 
     // Public getter for points, useful for GoalManager to sum scores:
