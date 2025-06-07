@@ -62,7 +62,7 @@ Run the program via your console and interact with the intuitive menu:
 
 ## 📸 Preview
 
-Coming soon! *(Optional: Include screenshots or a demo GIF here)*
+![alt text](image.png)
 
 ---
 
