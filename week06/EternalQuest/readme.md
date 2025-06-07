@@ -60,7 +60,7 @@ Run the program via your console and interact with the intuitive menu:
 
 ---
 
-## 📸 Preview
+## 📸 Preview - Menu
 
 ![alt text](image.png)
 
