@@ -44,66 +44,6 @@ Welcome to the **Exercise Tracking Program** – a modular, extensible system th
 
 - [.NET 6.0+ SDK](https://dotnet.microsoft.com/download)
 
-### 📥 Clone the Repository
-
-```bash
-git clone https://github.com/YourGitHubUsername/exercise-tracking-program.git
-cd exercise-tracking-program
-
-▶️ Run the Program
-
-dotnet run
-
-💻 Code Example
-
-List<Activity> activities = new List<Activity>();
-
-// Running, Cycling, Swimming
-activities.Add(new Running(new DateTime(2024, 11, 3), 30, 3.0, UnitSystem.Miles));
-activities.Add(new Cycling(new DateTime(2024, 11, 4), 45, 15.0, UnitSystem.Miles));
-activities.Add(new Swimming(new DateTime(2024, 11, 5), 20, 40, UnitSystem.Miles));
-
-// Kilometers
-activities.Add(new Running(new DateTime(2024, 11, 6), 60, 4.66, UnitSystem.Kilometers));
-activities.Add(new Cycling(new DateTime(2024, 11, 7), 50, 18.64, UnitSystem.Kilometers));
-activities.Add(new Swimming(new DateTime(2024, 11, 8), 30, 60, UnitSystem.Kilometers));
-
-// Hiking
-activities.Add(new Hiking(new DateTime(2024, 11, 9), 120, 5.5, 1500, UnitSystem.Miles));
-activities.Add(new Hiking(new DateTime(2024, 11, 10), 90, 3.1, 700, UnitSystem.Kilometers));
-
-// Invalid entry
-try {
-    activities.Add(new Running(new DateTime(2024, 11, 11), 0, 1.0, UnitSystem.Miles));
-} catch (ArgumentException ex) {
-    Console.WriteLine($"\nError adding activity: {ex.Message}");
-}
-
-// Display
-Console.WriteLine("\n--- Exercise Activity Summaries ---");
-foreach (Activity activity in activities) {
-    Console.WriteLine(activity.GetSummary());
-}
-
-// Totals
-Console.WriteLine("\n--- Total Distance by Unit System ---");
-
-double totalDistanceMiles = activities
-    .Where(a => !double.IsNaN(a.GetDistance()) && !double.IsInfinity(a.GetDistance()))
-    .Sum(a => a.CurrentUnitSystem == UnitSystem.Miles
-        ? a.GetDistance()
-        : a.GetDistance() * Activity.MilesPerKilometer);
-
-Console.WriteLine($"Total Distance: {totalDistanceMiles:F2} miles");
-
-double totalDistanceKm = activities
-    .Where(a => !double.IsNaN(a.GetDistance()) && !double.IsInfinity(a.GetDistance()))
-    .Sum(a => a.CurrentUnitSystem == UnitSystem.Kilometers
-        ? a.GetDistance()
-        : a.GetDistance() * Activity.KilometersPerMile);
-
-Console.WriteLine($"Total Distance: {totalDistanceKm:F2} kilometers");
-
 
 🧾 Expected Output
 ![Program output](print-out.png)
@@ -122,7 +62,7 @@ Console.WriteLine($"Total Distance: {totalDistanceKm:F2} kilometers");
 
 💾 Data Persistence via JSON, SQLite or CSV logging
 
-💪🏽 More Activity Types: Yoga, CrossFit, Weightlifting, etc.
+💪🏽 More Activity Types: Yoga, CrossFit, Weightlifting, etc
 
 📈 Analytics Dashboard: Charts, averages, pace evolution
 
@@ -137,23 +77,16 @@ Course	CSE 210 – Programming with Classes
 Assignment	W07 – Exercise Tracking Program
 Date	June 14, 2025
 
-📬 Connect With Me
-🔗 LinkedIn
-
-📷 Instagram
-
-
-📄 License
-This project is designed by Tiago Borges
 
 💡 “Fitness is not about being better than someone else. It’s about being better than you used to be.”
 💻 And coding is exactly the same...
 
 Let me know if you'd like:
-- 📸 Screenshot generation of the console output
 - 🖼 A custom logo/banner
 - 🧪 Unit tests to include in the repo
 - 🌐 Multi-language version 
+
+📄 License
 
 © 2025 Tiago Borges | All Rights Reserved
 Developed as part of the CSE 210: Programming with Classes course at BYU-Idaho
