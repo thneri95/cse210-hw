@@ -46,6 +46,8 @@ Welcome to the **Exercise Tracking Program** – a modular, extensible system th
 
 
 🧾 Expected Output
+
+
 ![Program Output](image.png)
 
 🧠 OOP Principles Demonstrated
