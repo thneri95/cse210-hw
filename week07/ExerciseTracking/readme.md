@@ -51,7 +51,8 @@ Welcome to the **Exercise Tracking Program** – a modular, extensible system th
 ![Program Output](image.png)
 
 🧠 OOP Principles Demonstrated
-🧩 Concept	🔍 Implementation Details
+
+🧩 Concept	- Implementation Details
 ✅ Inheritance	All activity classes derive from an abstract Activity base class
 ✅ Encapsulation	Data members are private with public access via methods or properties
 ✅ Polymorphism	Methods like GetSummary() are overridden for each activity type
@@ -59,6 +60,7 @@ Welcome to the **Exercise Tracking Program** – a modular, extensible system th
 
 
 🔮 Future Enhancements
+
 🖥️ GUI Interface using WPF, Avalonia, or WinForms
 
 💾 Data Persistence via JSON, SQLite or CSV logging
@@ -80,7 +82,7 @@ Date	June 14, 2025
 
 
 💡 “Fitness is not about being better than someone else. It’s about being better than you used to be.”
-💻 And coding is exactly the same...
+
 
 Let me know if you'd like:
 - 🖼 A custom logo/banner
