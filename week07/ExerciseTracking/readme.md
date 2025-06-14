@@ -46,8 +46,7 @@ Welcome to the **Exercise Tracking Program** – a modular, extensible system th
 
 
 🧾 Expected Output
-week07/ExerciseTracking/screenshots/image.png
-
+![Program Output](image.png)
 
 🧠 OOP Principles Demonstrated
 🧩 Concept	🔍 Implementation Details
