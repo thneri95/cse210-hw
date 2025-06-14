@@ -1,0 +1,74 @@
+BYU- Idaho | BSc in Software Development     
+
+CSE-210 Course Programming with Classes   
+
+Week 06 Explain Polymorphism 
+
+Author: Tiago Borges 
+
+Polymorphism: Making My Code Adaptable and Powerful 
+
+When I think about polymorphism, I really see it as "one interface, many forms." It's about having a single, unified way to interact with different types of objects, and each object then intelligently performs that action in its own specific way. This is incredibly powerful because it means I don't have to write custom logic for every single object type. 
+
+Think about it like this: In my "Eternal Quest Program," I have various Goal objects – SimpleGoals, EternalGoals, and ChecklistGoals. Each is distinct, but they all share common behaviors because they inherit from my base Goal class. I can tell all my Goal objects to "record an event," and each knows precisely how to handle it – a SimpleGoal marks itself complete, an EternalGoal just adds points, and a ChecklistGoal increments its counter and checks for a bonus. 
+
+But polymorphism goes beyond just recording events. It's also central to how I save my users' progress. I can also tell all my Goal objects to "give me your string representation" (using a method called GetStringRepresentation()). Every type of goal understands this request, but each knows how to format its own specific data into a string so I can save it to a file. 
+
+ 
+
+Why Polymorphism Is a Game-Changer for My Code 
+
+For me, the biggest win with polymorphism is how it makes my code incredibly flexible and easy to extend, especially in areas like data persistence. Imagine if I didn't use polymorphism for saving. When I wanted to save goals, I'd have to write if-else statements, checking if (goal is SimpleGoal) then casting it and saving its specific properties, then else if (goal is EternalGoal) and so on. It would be a messy, hard-to-read, and constantly changing piece of code. 
+
+But with polymorphism, if I decide to add a brand new type of goal in the future (say, a "HabitGoal" or a "ProjectGoal"), my SaveGoals() method doesn't need to change at all! As long as my new goal class correctly inherits from Goal and implements its own GetStringRepresentation() method, my existing saving logic will automatically know how to handle it. This keeps my code much cleaner, more maintainable, and truly ready for whatever new features I dream up, making my applications genuinely scalable. 
+
+ 
+
+Polymorphism in Action: Saving Goals in My Eternal Quest Program 
+
+My "Eternal Quest Program" provides a perfect, tangible example of polymorphism, especially when it comes to saving data. At its core, my GoalManager class maintains a List<Goal> which holds all the different goals my users create. This list doesn't care about the specific derived type of each item; it only knows they are all Goal objects. 
+
+
+
+
+Here's the snippet from my SaveGoals() method that beautifully illustrates this:
+
+public void SaveGoals()
+    {
+        Console.Write("What is the filename to save your goals to? ");
+        string filename = Console.ReadLine();
+
+        try
+        {
+            using (StreamWriter outputFile = new StreamWriter(filename))
+            {
+                // To Save the current score:
+                outputFile.WriteLine(_score);
+                foreach (Goal goal in _goals)
+                {
+                    // Polymorphism: Calls the appropriate GetStringRepresentation for each goal type!
+                    outputFile.WriteLine(goal.GetStringRepresentation());
+                }
+            }
+            Console.WriteLine($"\nGoals saved to '{filename}' successfully!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nError saving goals: {ex.Message}. Please try again.");
+        }
+    }
+
+
+
+
+
+
+
+
+As you can see in the foreach loop, I'm simply iterating through my _goals list and telling each goal to call its GetStringRepresentation() method. I don't need to check if (goal is SimpleGoal) or if (goal is ChecklistGoal). Each goal inherently knows how to serialize itself into a string format that includes all its unique data (like _isComplete for SimpleGoal or _amountCompleted for ChecklistGoal). This keeps my SaveGoals() method incredibly lean and clean, focusing purely on writing the data, while the specific formatting is handled polymorphically by each goal type. It's incredibly powerful and efficient! 
+
+ 
+
+Last but not least >< 
+
+What I learned from implementing polymorphism in my "Eternal Search Program" is that it is not just a fancy academic term; it is a practical tool for building robust, flexible and maintainable software. By adopting the "one interface, many forms" philosophy, I can write code that interacts seamlessly with multiple objects, handles new requirements with ease, and avoids complex conditional logic... This truly allows me to build applications that can grow and evolve, making my development journey much more efficient and enjoyable! 

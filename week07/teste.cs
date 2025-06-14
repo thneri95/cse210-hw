@@ -1,4 +1,4 @@
-
+// ======================================================
 // Program: Exercise Tracking Program
 // Author: Tiago Borges
 // Course: CSE 210 – Programming with Classes
@@ -8,13 +8,13 @@
 // Description:
 // This program demonstrates principles of inheritance, encapsulation, 
 // and polymorphism by modeling three types of physical activities:
-// Running, Cycling and Swimming. 
-//Each activity type inherits from a  shared abstract base class `Activity`, 
-//which defines common attributes (date, minutes, and unit system) and declares abstract methods for 
+// Running, Cycling, and Swimming. Each activity type inherits from a 
+// shared abstract base class `Activity`, which defines common attributes 
+// (date, minutes, and unit system) and declares abstract methods for 
 // calculating distance, speed, and pace.
-
-// The program supports both miles and kilometers, dynamically adapting 
-// all calculations and output units based on a `UnitSystem` enumeration
+//
+// The program supports both **miles and kilometers**, dynamically adapting 
+// all calculations and output units based on a `UnitSystem` enumeration.
 //
 // Additional Features & Enhancements:
 // ------------------------------------------------------
@@ -23,7 +23,7 @@
 //     this program intelligently supports both, improving usability
 //
 // • Input Validation:
-//   - Ensures minutes, distance, speed, and laps are non-negative
+//   - Ensures minutes, distance, speed, and laps are non-negative.
 //   - Demonstrates robust error handling with try-catch blocks
 //
 // • Clean and Readable Output:
@@ -31,15 +31,15 @@
 //     summary with units formatted accordingly
 //
 // • Strong Encapsulation and Abstraction:
-//   - Private and protected fields enforce encapsulation
+//   - Private and protected fields enforce encapsulation.
 //   - Abstract and overridden methods ensure polymorphic behavior
 //
 // • Scalable Design:
-//   - Easily extendable to include other activities in the future
+//   - Easily extendable to include other activities in the future.
 //
 // This program successfully meets 100% of the assignment requirements 
 // and includes thoughtful enhancements that demonstrate a deeper 
-// understanding of OOP - object-oriented Program.
+// understanding of object-oriented design.
 // ======================================================
 
 // Let´s do it work!!!
@@ -70,7 +70,7 @@ public abstract class Activity
     {
         if (minutes <= 0)
         {
-            throw new ArgumentException("Minutes Always must be a positive value for an activity", nameof(minutes));
+            throw new ArgumentException("Minutes must be a positive value for an activity.", nameof(minutes));
         }
 
         _date = date;
@@ -89,7 +89,7 @@ public abstract class Activity
 
     public virtual string GetSummary()
     {
-        string formattedDate = _date.ToString("MMM dd yyyy");
+        string formattedDate = _date.ToString("dd MMM");
 
         string distanceUnit = (_unitSystem == UnitSystem.Miles) ? "miles" : "km";
         string speedUnit = (_unitSystem == UnitSystem.Miles) ? "mph" : "kph";
@@ -152,7 +152,7 @@ public class Cycling : Activity
     {
         if (recordedSpeedMph < 0)
         {
-            throw new ArgumentException("Speed cannot be negative", nameof(recordedSpeedMph));
+            throw new ArgumentException("Speed cannot be negative.", nameof(recordedSpeedMph));
         }
         _recordedSpeedMph = recordedSpeedMph;
     }
@@ -187,7 +187,7 @@ public class Swimming : Activity
     {
         if (laps < 0)
         {
-            throw new ArgumentException("Number of laps cannot be negative", nameof(laps));
+            throw new ArgumentException("Number of laps cannot be negative.", nameof(laps));
         }
         _laps = laps;
     }
@@ -221,24 +221,24 @@ public class Program
     {
         List<Activity> activities = new List<Activity>();
 
-        activities.Add(new Running(new DateTime(2024, 11, 3), 30, 3.0, UnitSystem.Miles));
-        activities.Add(new Cycling(new DateTime(2024, 11, 4), 45, 15.0, UnitSystem.Miles));
-        activities.Add(new Swimming(new DateTime(2024, 11, 5), 20, 40, UnitSystem.Miles));
+        activities.Add(new Running(new DateTime(2022, 11, 3), 30, 3.0, UnitSystem.Miles));
+        activities.Add(new Cycling(new DateTime(2022, 11, 4), 45, 15.0, UnitSystem.Miles));
+        activities.Add(new Swimming(new DateTime(2022, 11, 5), 20, 40, UnitSystem.Miles));
 
-        activities.Add(new Running(new DateTime(2024, 11, 6), 60, 4.66, UnitSystem.Kilometers));
-        activities.Add(new Cycling(new DateTime(2024, 11, 7), 50, 18.64, UnitSystem.Kilometers));
-        activities.Add(new Swimming(new DateTime(2024, 11, 8), 30, 60, UnitSystem.Kilometers));
+        activities.Add(new Running(new DateTime(2022, 11, 6), 60, 4.66, UnitSystem.Kilometers));
+        activities.Add(new Cycling(new DateTime(2022, 11, 7), 50, 18.64, UnitSystem.Kilometers));
+        activities.Add(new Swimming(new DateTime(2022, 11, 8), 30, 60, UnitSystem.Kilometers));
 
         try
         {
-            activities.Add(new Running(new DateTime(2024, 11, 9), 0, 1.0, UnitSystem.Miles));
+            activities.Add(new Running(new DateTime(2022, 11, 9), 0, 1.0, UnitSystem.Miles));
         }
         catch (ArgumentException ex)
         {
-            Console.WriteLine($"\nMessage: {ex.Message}");
+            Console.WriteLine($"\nError adding activity: {ex.Message}");
         }
 
-        Console.WriteLine("\n--- Welcome to Exercise Activity Summaries ---");
+        Console.WriteLine("\n--- Exercise Activity Summaries ---");
         foreach (Activity activity in activities)
         {
             Console.WriteLine(activity.GetSummary());
