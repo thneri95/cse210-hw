@@ -106,7 +106,7 @@ Console.WriteLine($"Total Distance: {totalDistanceKm:F2} kilometers");
 
 
 🧾 Expected Output
-![Program output](print-out.png)
+week07/ExerciseTracking/screenshots/image.png
 
 
 🧠 OOP Principles Demonstrated
