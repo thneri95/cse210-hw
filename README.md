@@ -1,7 +1,8 @@
 # CSE‑210: BYU‑Idaho, My personal Work Repository 🧠👨‍💻
 
+**Course**: CSE‑210 – Programming with Classes (Program and Problem Solving) 
 **Author**: Tiago Neri  
-**Course**: CSE‑210 – Programming with Classes (Program and Problem Solving)  
+ 
 ---
 
 ## 🎯 Course Overview
